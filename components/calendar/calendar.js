@@ -26,6 +26,16 @@ Component({
     month: {
       type: Number,
       default: parseInt(moment().format("MM"))
+    },
+    typeList: {
+      type: Array,
+      default: [],
+      observer: function(newVal, oldVal, changedPath) {
+        if (oldVal.length === 0) return;
+        this.setData({
+          "content.b": this.getSelectedMonthDayList(this.data.content.b, newVal)
+        });
+      }
     }
   },
   data: {
@@ -52,11 +62,12 @@ Component({
       this.setData({
         content: {
           a: this.getSpecifiedMonth(tmp_month, -1),
-          b: this.getSpecifiedMonth(tmp_month, 0),
+          b: this.getSelectedMonthDayList(this.getSpecifiedMonth(tmp_month, 0), this.properties.typeList),
           c: this.getSpecifiedMonth(tmp_month, 1)
         },
         showMonth: tmp_month
       });
+      console.log()
     }
   },
   methods: {
@@ -153,8 +164,11 @@ Component({
     /**
      * getSelectedMonthDayList
      * 根据monthObj和givenTypeList，得到选中月份的新dayList
+     * @param {Object} monthObj
+     * @param {Array} givenTypeList
      */
     getSelectedMonthDayList: function(monthObj, givenTypeList) {
+      console.log(givenTypeList)
       let result = monthObj;
       let i = 0;
       for (; i < result.dayList.length; i++) {
@@ -166,6 +180,8 @@ Component({
           result.dayList[i + j].type = SELECTED_DAY;
         } else if (givenTypeList[j].haveItems) {
           result.dayList[i + j].type = HAVE_ITEM_DAY;
+        } else {
+          result.dayList[i + j].type = NORMAL_DAY;
         }
       }
       console.log(result);
@@ -329,7 +345,6 @@ Component({
     },
 
     selectDay: function(e) {
-      console.log(e);
       let detail = {
         year: parseInt(this.data.showMonth.slice(0, 4)),
         month: parseInt(this.data.showMonth.slice(5, 7)),
