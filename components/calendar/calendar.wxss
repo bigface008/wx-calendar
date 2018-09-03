@@ -1,0 +1,111 @@
+.calendar-container {
+  /* width: 90%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.calendar-title {
+  height: 30px;
+  font-size: 13px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.calendar-title-month {
+  width: 90%;
+  text-align: center;
+}
+
+.calendar-arrow-box {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.calendar-arrow {
+  height: 20px;
+  width: 20px;
+}
+
+.calendar-week-type {
+  height: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.calendar-week-box {
+  height: 30px;
+  width: 14.28%;
+  text-align: center;
+  font-size: 13px;
+}
+
+.calendar-days-list {
+  height: 210px;
+}
+
+.calendar-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 210px;
+}
+
+.calendar-day-box {
+  height: 35px;
+  width: 14.28%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+}
+
+.calendar-swiper {
+  height: 210px;
+}
+
+.calendar-normal-day {
+}
+
+.calendar-not-current-month-day {
+  color: #e5e5e5;
+}
+
+.calendar-selected-day {
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  background-color: orange;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-have-item-day {
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  background-color: blueviolet;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.calendar-days-list {
+  width: 100%;
+}

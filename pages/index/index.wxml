@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <view class="c"> -->
+    <calendar
+      class="calendar"
+      year="{{showYear}}"
+      month="{{showMonth}}"
+      days-color="{{dayList}}"
+      binddayClick="selectDay"
+      bindnextMonth="nextMonth"
+      bindprevMonth="prevMonth" />
+  <!-- </view> -->
+</view>
