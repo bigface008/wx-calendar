@@ -62,12 +62,15 @@ Component({
       this.setData({
         content: {
           a: this.getSpecifiedMonth(tmp_month, -1),
-          b: this.getSelectedMonthDayList(this.getSpecifiedMonth(tmp_month, 0), this.properties.typeList),
+          b: this.getSelectedMonthDayList(
+            this.getSpecifiedMonth(tmp_month, 0),
+            this.properties.typeList
+          ),
           c: this.getSpecifiedMonth(tmp_month, 1)
         },
         showMonth: tmp_month
       });
-      console.log()
+      console.log();
     }
   },
   methods: {
@@ -168,7 +171,6 @@ Component({
      * @param {Array} givenTypeList
      */
     getSelectedMonthDayList: function(monthObj, givenTypeList) {
-      console.log(givenTypeList)
       let result = monthObj;
       let i = 0;
       for (; i < result.dayList.length; i++) {
@@ -184,7 +186,6 @@ Component({
           result.dayList[i + j].type = NORMAL_DAY;
         }
       }
-      console.log(result);
       return result;
     },
 
