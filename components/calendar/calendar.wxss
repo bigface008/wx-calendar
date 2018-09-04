@@ -6,7 +6,7 @@
 }
 
 .calendar-title {
-  height: 30px;
+  height: 72rpx;
   font-size: 13px;
   display: flex;
   flex-direction: row;
@@ -14,8 +14,10 @@
 }
 
 .calendar-title-month {
+  font-size: 40rpx;  
   width: 90%;
   text-align: center;
+  font-weight: bold;
 }
 
 .calendar-arrow-box {
@@ -26,8 +28,8 @@
 }
 
 .calendar-arrow {
-  height: 20px;
-  width: 20px;
+  height: 45rpx;
+  width: 45rpx;
 }
 
 .calendar-week-type {
@@ -43,35 +45,32 @@
   height: 30px;
   width: 14.28%;
   text-align: center;
-  font-size: 13px;
+  font-size: 35rpx;
 }
 
 .calendar-days-list {
-  height: 210px;
+  height: 520rpx;
 }
 
 .calendar-content {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  height: 210px;
+  height: 420rpx;
 }
 
 .calendar-day-box {
-  height: 35px;
+  height: 85rpx;
   width: 14.28%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  font-size: 13px;
+  font-size: 34.5rpx;
 }
 
 .calendar-swiper {
-  height: 210px;
-}
-
-.calendar-normal-day {
+  height: 520rpx;
 }
 
 .calendar-not-current-month-day {
@@ -80,8 +79,8 @@
 
 .calendar-selected-day {
   color: #ffffff;
-  width: 30px;
-  height: 30px;
+  width: 73rpx;
+  height: 73rpx;
   background-color: orange;
   border-radius: 50%;
   -moz-border-radius: 50%;
@@ -94,8 +93,8 @@
 
 .calendar-have-item-day {
   color: #ffffff;
-  width: 30px;
-  height: 30px;
+  width: 73rpx;
+  height: 73rpx;
   background-color: blueviolet;
   border-radius: 50%;
   -moz-border-radius: 50%;

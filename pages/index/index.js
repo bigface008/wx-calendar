@@ -10,7 +10,7 @@ function getList() {
       haveItems: false
     });
   }
-  tmp[12].selected = true;
+  tmp[21].selected = true;
   tmp[13].haveItems = true;
   tmp[20].haveItems = true;
   return tmp;

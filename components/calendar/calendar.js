@@ -31,10 +31,61 @@ Component({
       type: Array,
       default: [],
       observer: function(newVal, oldVal, changedPath) {
-        if (oldVal.length === 0) return;
-        this.setData({
-          "content.b": this.getSelectedMonthDayList(this.data.content.b, newVal)
-        });
+        if (oldVal.length === 0) {
+          let tmp_month =
+            "" +
+            this.properties.year +
+            "-" +
+            (this.properties.month < 10
+              ? "0" + this.properties.month
+              : this.properties.month);
+          this.setData({
+            content: {
+              a: this.getSpecifiedMonth(tmp_month, -1),
+              b: this.getSelectedMonthDayList(
+                this.getSpecifiedMonth(tmp_month, 0),
+                this.properties.typeList
+              ),
+              c: this.getSpecifiedMonth(tmp_month, 1)
+            },
+            showMonth: tmp_month
+          });
+          return;
+        }
+        console.log("old val: ", oldVal);
+        console.log("new val: ", newVal);
+        console.log("index : ", this.data.index);
+        switch (this.data.index) {
+          case 0: {
+            this.setData({
+              "content.a": this.getSelectedMonthDayList(
+                this.data.content.a,
+                newVal
+              )
+            });
+            break;
+          }
+          case 1: {
+            this.setData({
+              "content.b": this.getSelectedMonthDayList(
+                this.data.content.b,
+                newVal
+              )
+            });
+            break;
+          }
+          case 2: {
+            this.setData({
+              "content.c": this.getSelectedMonthDayList(
+                this.data.content.c,
+                newVal
+              )
+            });
+            break;
+          }
+          default:
+            break;
+        }
       }
     }
   },
@@ -52,25 +103,8 @@ Component({
   lifetimes: {
     attached: function() {
       console.log("Launching calendar.");
-      let tmp_month =
-        "" +
-        this.properties.year +
-        "-" +
-        (this.properties.month < 10
-          ? "0" + this.properties.month
-          : this.properties.month);
-      this.setData({
-        content: {
-          a: this.getSpecifiedMonth(tmp_month, -1),
-          b: this.getSelectedMonthDayList(
-            this.getSpecifiedMonth(tmp_month, 0),
-            this.properties.typeList
-          ),
-          c: this.getSpecifiedMonth(tmp_month, 1)
-        },
-        showMonth: tmp_month
-      });
-      console.log();
+      console.log(this.properties.typeList);
+      console.log(this.data.content);
     }
   },
   methods: {
@@ -171,22 +205,38 @@ Component({
      * @param {Array} givenTypeList
      */
     getSelectedMonthDayList: function(monthObj, givenTypeList) {
-      let result = monthObj;
-      let i = 0;
-      for (; i < result.dayList.length; i++) {
-        if (result.dayList[i].day === 1) break;
-      }
+      // let result = monthObj;
+      // let i = 0;
+      // for (; i < result.dayList.length; i++) {
+      //   if (result.dayList[i].day === 1) break;
+      // }
 
-      for (let j = 0; j < givenTypeList.length; j++) {
-        if (givenTypeList[j].selected) {
-          result.dayList[i + j].type = SELECTED_DAY;
-        } else if (givenTypeList[j].haveItems) {
-          result.dayList[i + j].type = HAVE_ITEM_DAY;
-        } else {
-          result.dayList[i + j].type = NORMAL_DAY;
+      // for (let j = 0; j < givenTypeList.length; j++) {
+      //   if (givenTypeList[j].selected) {
+      //     result.dayList[i + j].type = SELECTED_DAY;
+      //   } else if (givenTypeList[j].haveItems) {
+      //     result.dayList[i + j].type = HAVE_ITEM_DAY;
+      //   } else {
+      //     result.dayList[i + j].type = NORMAL_DAY;
+      //   }
+      // }
+      // return result;
+      let result = monthObj;
+      for (let i = 0; i < result.dayList.length; i++) {
+        if (result.dayList[i].day === 1) {
+          for (let j = 0; j < givenTypeList.length; j++) {
+            if (givenTypeList[j].selected) {
+              result.dayList[i + j].type = SELECTED_DAY;
+            } else if (givenTypeList[j].haveItems) {
+              result.dayList[i + j].type = HAVE_ITEM_DAY;
+            } else {
+              result.dayList[i + j].type = NORMAL_DAY;
+            }
+          }
+          console.log("changed monthObj ", result);
+          return result;
         }
       }
-      return result;
     },
 
     /**
